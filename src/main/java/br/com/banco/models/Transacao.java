@@ -1,16 +1,10 @@
-package br.com.banco.Models;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
+package br.com.banco.models;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "transferencia")
 public class Transacao {
@@ -35,6 +29,6 @@ public class Transacao {
 
     @ManyToOne
     @JoinColumn(name = "conta_id", nullable = false)
-    private UserBanco userBanco;
+    private UserConta userConta;
 }
 

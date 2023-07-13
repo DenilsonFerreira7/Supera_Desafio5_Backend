@@ -1,5 +1,5 @@
-package br.com.banco.Respository;
-import br.com.banco.Models.Transacao;
+package br.com.banco.respository;
+import br.com.banco.models.Transacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,17 +1,12 @@
-package br.com.banco.Models;
-import lombok.AllArgsConstructor;
+package br.com.banco.models;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 // TABELA CONTA
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "conta")
-public class UserBanco {
+public class UserConta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
