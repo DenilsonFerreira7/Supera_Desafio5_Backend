@@ -8,6 +8,7 @@ import java.util.Collections;
 @ControllerAdvice
 public class ExceptionHandlerClass {
 
+    //Faz o tratamento do erro 500
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleException(Exception ex) {
         String mensagem = "Ocorreu um erro durante o processamento da solicitação, verifique se os campos foram preenchido corretamente";

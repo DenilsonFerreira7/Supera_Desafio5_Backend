@@ -4,10 +4,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+// TABELA TRANSFERÊNCIA
 @Data
 @Entity
 @Table(name = "transferencia")
-public class Transacao {
+public class Transferencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
