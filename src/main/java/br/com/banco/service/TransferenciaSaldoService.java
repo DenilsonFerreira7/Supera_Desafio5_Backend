@@ -15,7 +15,7 @@ public class TransferenciaSaldoService {
     private final TransferenciaRepository transferenciaRepository;
 
 
-    // Calcula o saldo total por conta
+    //Saldo total por conta
     public BigDecimal calcularSaldoTotalPorConta(Long idConta) {
         BigDecimal saldoTotal = transferenciaRepository.calcularSaldoTotalPorConta(idConta);
         if (saldoTotal == null) {
@@ -25,7 +25,7 @@ public class TransferenciaSaldoService {
     }
 
 
-    // Calcula o saldo total por período
+    //Saldo total por periodo de datas
     public BigDecimal calcularSaldoTotalPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
         BigDecimal saldoTotal = transferenciaRepository.calcularSaldoTotalPorPeriodo(inicio, fim);
         if (saldoTotal == null) {
@@ -35,11 +35,31 @@ public class TransferenciaSaldoService {
     }
 
 
-    //Calcular saldo total
-    public BigDecimal calcularSaldoTotal() {
-        BigDecimal saldoTotal = transferenciaRepository.calcularSaldoTotal();
+    // Saldo total por periodo e id da conta
+    public BigDecimal calcularSaldoTotalPorPeriodoEConta(LocalDateTime inicio, LocalDateTime fim, Long idConta) {
+        BigDecimal saldoTotal = transferenciaRepository.calcularSaldoTotalPorPeriodoEConta(inicio, fim, idConta);
         if (saldoTotal == null) {
-            throw new NotFoundExeption("Não foi possível calcular o saldo total.");
+            throw new NotFoundExeption("Saldo total não encontrado");
+        }
+        return saldoTotal.setScale(2, RoundingMode.HALF_UP);
+    }
+
+
+    // Saldo total por periodo de datas  e nome do operador
+    public BigDecimal calcularSaldoTotalPorPeriodoEContaEOperador(String nomeOperadorTransacao) {
+        BigDecimal saldoTotal = transferenciaRepository.calcularSaldoTotalPorPeriodoEContaEOperador(nomeOperadorTransacao);
+        if (saldoTotal == null) {
+            throw new NotFoundExeption("Saldo total não encontrado");
+        }
+        return saldoTotal.setScale(2, RoundingMode.HALF_UP);
+    }
+
+
+    // Saldo total por periodo e nome do operador
+    public BigDecimal calcularSaldoTotalPorPeriodoEOperador(LocalDateTime inicio, LocalDateTime fim, String nomeOperadorTransacao) {
+        BigDecimal saldoTotal = transferenciaRepository.calcularSaldoTotalPorPeriodoEOperador(inicio, fim, nomeOperadorTransacao);
+        if (saldoTotal == null) {
+            throw new NotFoundExeption("Saldo não encontrado");
         }
         return saldoTotal.setScale(2, RoundingMode.HALF_UP);
     }

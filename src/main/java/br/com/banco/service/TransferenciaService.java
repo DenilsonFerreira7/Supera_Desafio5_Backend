@@ -4,9 +4,6 @@ import br.com.banco.models.Transferencia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import br.com.banco.respository.TransferenciaRepository;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 @Service
@@ -24,17 +21,13 @@ public class TransferenciaService {
     }
 
 
-    // Retorna as transferências relacionadas a um período de tempo
+    // Transferências por periodo de datas
     public List<Transferencia> buscarTransferenciasPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
-        List<Transferencia> transferencias = transferenciaRepository.findAllByDataTransferenciaBetween(inicio, fim);
-        if (transferencias.isEmpty()) {
-            throw new NotFoundExeption("Não foram encontradas transações para o período fornecido.");
-        }
-        return transferencias;
+        return transferenciaRepository.findAllByDataTransferenciaBetween(inicio, fim);
     }
 
 
-    // Retorna as transferências relacionadas a um operador de transação
+    // Transferências por nome de operador
     public List<Transferencia> buscarTransferenciasPorOperador(String nomeOperador) {
         List<Transferencia> transferencias = transferenciaRepository.findAllByNomeOperadorTransacao(nomeOperador);
         if (transferencias.isEmpty()) {
@@ -44,13 +37,23 @@ public class TransferenciaService {
     }
 
 
-    // Retorna as transferências com base no período de tempo e nome do operador
+    // Transferências por período de datas e nome do operador
     public List<Transferencia> buscarTransferenciasPorContaEPeriodo(Long idConta, LocalDateTime inicio, LocalDateTime fim) {
-        List<Transferencia> transferencias = transferenciaRepository.findAllByUserContaIdContaAndDataTransferenciaBetween(idConta, inicio, fim);
+        List<Transferencia> transferencias = transferenciaRepository.buscarTransferenciasPorContaEPeriodo(idConta, inicio, fim);
         if (transferencias.isEmpty()) {
             throw new NotFoundExeption("Não foram encontradas transações para a conta e período fornecidos.");
         }
         return transferencias;
+    }
+
+
+    // Transferencias por periodo de datas e nome do operador
+    public List<Transferencia> buscarTransferenciasPorPeriodoEOperador(LocalDateTime inicio, LocalDateTime fim, String nomeOperadorTransacao) {
+        List<Transferencia> transferencias = transferenciaRepository.findByDataTransferenciaBetweenAndNomeOperadorTransacao(inicio, fim, nomeOperadorTransacao);
+        if (transferencias.isEmpty()){
+            throw new NotFoundExeption("Não foram encontradas transações para a conta e período fornecidos");
+        }
+        return  transferencias;
     }
 
 
