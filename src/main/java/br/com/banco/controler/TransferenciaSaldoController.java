@@ -22,7 +22,7 @@ public class TransferenciaSaldoController {
 
 
     //RETORNA SALDO TOTAL POR (id) DA CONTA
-    //TEST: GET http://localhost:8080/saldo/conta/1  /FEITO
+    //TEST: GET http://localhost:8080/saldo/conta/1
     @GetMapping(value = "/conta/{idConta}", produces = "application/json")
     public ResponseEntity<BigDecimal> calcularSaldoTotalPorConta(@PathVariable Long idConta) {
         BigDecimal saldoTotal = transferenciaSaldoService.calcularSaldoTotalPorConta(idConta);
@@ -31,8 +31,8 @@ public class TransferenciaSaldoController {
 
 
     // RETORNA SALDO TOTAL POR NOME DO OPERADOR
-    //http://localhost:8080/saldo/totalPeriodoEContaOperador/Maria
-    @GetMapping(value = "/totalPeriodoEContaOperador/{nomeOperadorTransacao}", produces = "application/json")
+    //http://localhost:8080/saldo/totalPeriodoNomeOperador/Maria
+    @GetMapping(value = "/totalPeriodoNomeOperador/{nomeOperadorTransacao}", produces = "application/json")
     public ResponseEntity<BigDecimal> calcularSaldoTotalPorPeriodoEContaEOperador(@PathVariable String nomeOperadorTransacao) {
         BigDecimal saldoTotal = transferenciaSaldoService.calcularSaldoTotalPorPeriodoEContaEOperador(nomeOperadorTransacao);
         return ResponseEntity.ok(saldoTotal);
@@ -40,7 +40,7 @@ public class TransferenciaSaldoController {
 
 
     //RETORNA SALDO POR PERIODO SELECIONADO
-    //TEST: http://localhost:8080/saldo/totalPeriodo?inicio=2020-01-01&fim=2021-12-31 /FEITO
+    //TEST: http://localhost:8080/saldo/totalPeriodo?inicio=2020-01-01&fim=2021-12-31
     @GetMapping(value = "/totalPeriodo", produces = "application/json")
     public ResponseEntity<BigDecimal> calcularSaldoTotalPorPeriodo(
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate inicio,
@@ -53,7 +53,7 @@ public class TransferenciaSaldoController {
 
 
     // RETORNA SALDO TOTAL POR ID PERIODO E DATA
-    // TEST: http://localhost:8080/saldo/totalPeriodoEConta?inicio=2020-01-01&fim=2021-12-31&idConta=3 /FEITO
+    // TEST: http://localhost:8080/saldo/totalPeriodoEConta?inicio=2020-01-01&fim=2021-12-31&idConta=3
     @GetMapping(value = "/totalPeriodoEConta", produces = "application/json")
     public ResponseEntity<BigDecimal> calcularSaldoTotalPorPeriodoEConta(
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate inicio,

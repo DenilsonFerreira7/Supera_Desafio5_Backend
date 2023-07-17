@@ -21,7 +21,7 @@ public class TransferenciasController {
 
 
     // BUSCA TRANSFERÊNCIAS POR ID DA CONTA
-    // TEST:  http://localhost:8080/transferencia/conta/1 //FEITO
+    // TEST:  http://localhost:8080/transferencia/conta/1
     @GetMapping(value = "/conta/{idConta}", produces = "application/json")
     public ResponseEntity<List<Transferencia>> buscarTransferenciasPorConta(@PathVariable Long idConta) {
         List<Transferencia> transferencias = transferenciaService.buscarTransferenciasPorConta(idConta);
@@ -30,7 +30,7 @@ public class TransferenciasController {
 
 
     // BUSCA LISTA DE TRANSFERÊNCIAS POR PERIODO
-    // TEST: GET http://localhost:8080/transferencia/periodo?inicio=2021-01-01&fim=2021-01-31 //FEITO
+    // TEST: GET http://localhost:8080/transferencia/periodo?inicio=2021-01-01&fim=2021-01-31
     @GetMapping(value = "/periodo", produces = "application/json")
     public ResponseEntity<List<Transferencia>> buscarTransferenciasPorPeriodo(
             @RequestParam(required = false) String inicio,
@@ -51,7 +51,7 @@ public class TransferenciasController {
     }
 
 
-    //BUSCA TRANSFERÊNCIAS POR PERIODO PASSANDO NUMERO DA CONTA (id) } //FEITO
+    //BUSCA TRANSFERÊNCIAS POR PERIODO PASSANDO NUMERO DA CONTA (id) }
     //TEST: http://localhost:8080/transferencia/conta-periodo?idConta=2&inicio=2021-01-01&fim=2021-01-31
     @GetMapping(value = "/conta-periodo", produces = "application/json")
     public ResponseEntity<List<Transferencia>> buscarTransferenciasPorContaEPeriodo(
@@ -68,7 +68,7 @@ public class TransferenciasController {
 
     //BUSCA TRANSFERENCIAS POR OPERADOR PASSANDO UM PERIODO DE DATAS
     //TEST: http://localhost:8080/transferencia/periodo-operador?inicio=2015-01-01&fim=2023-12-31&nomeOperador=Mar
-    @GetMapping("/periodo-operador")
+    @GetMapping(value = "/periodo-operador", produces = "application/json")
     public ResponseEntity<List<Transferencia>> buscarTransferenciasPorPeriodoEOperador(
             @RequestParam(required = false) String inicio,
             @RequestParam(required = false) String fim,
